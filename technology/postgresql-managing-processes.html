@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    <title>Managing Queries in PostgreSQL | Kreamer.org</title>
+    
+    <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <div id="logo">
+        <a href="/" title="Home" rel="home">
+          <img src="/images/moon.png" alt="Home" id="logo-image" 
+               /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
+        </a>
+      </div>
+      <div class="breadcrumbs">
+<a href="/">Home</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/">Technology</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/postgresql-managing-processes.html">Managing Queries in PostgreSQL</a>
+</div>
+
+    </div>
+      
+    <div class="main-content">
+      <h1>Managing Queries in PostgreSQL</h1><div class="blog-header"><p>Posted on September 13, 2012</p></div><p>These are a few tips and tricks for looking into and managing currently running PostgreSQL queries.</p>
+<p>First, let's define our problem: you notice your database going slower than usual. You suspect
+queries from other users are hogging server resources. What to do next?</p>
+<h2>Investigate</h2>
+<p>From within PostgreSQL, you can see what queries are currently being run, and gather some
+information about those queries, by looking at
+<a href="http://www.postgresql.org/docs/9.2/static/monitoring-stats.html"><code>pg_stat_activity</code></a>.
+To look at queries beyond your own, though, note that you 
+must be <code>postgres</code> or another database superuser. 
+As an example:
+</p><pre>
+kkreamer=# \x
+Expanded display is on.
+kkreamer=# SELECT * FROM pg_stat_activity;
+-[ RECORD 1 ]----+--------------------------------
+datid            | 17380
+datname          | kkreamer
+procpid          | 24269
+usesysid         | 17379
+usename          | kkreamer
+application_name | psql
+client_addr      | 
+client_hostname  | 
+client_port      | -1
+backend_start    | 2012-09-13 22:15:13.974044-04
+xact_start       | 2012-09-13 22:19:41.273956-04
+query_start      | 2012-09-13 22:19:41.273956-04
+waiting          | f
+current_query    | SELECT pg_sleep(10000);
+-[ RECORD 2 ]----+--------------------------------
+datid            | 17380
+datname          | kkreamer
+procpid          | 24270
+usesysid         | 10
+usename          | postgres
+application_name | psql
+client_addr      | 
+client_hostname  | 
+client_port      | -1
+backend_start    | 2012-09-13 22:15:18.807465-04
+xact_start       | 2012-09-13 22:20:05.845899-04
+query_start      | 2012-09-13 22:20:05.845899-04
+waiting          | f
+current_query    | SELECT * FROM pg_stat_activity;
+</pre>
+<p>Note that since <code>pg_stat_activity</code> is a wide table and the queries in 
+question could be long, I recommend using
+<code>psql's</code> extended display (<code>\x</code>) to see all of the columns.</p>
+<h3>What to look for?</h3>
+<p>First, look for long-running queries by comparing <code>query_start</code>
+and <code>xact_start</code> to <code>CURRENT_TIMESTAMP</code>. These are the queries
+most likely to have bad effects on your server.</p>
+<p>Next, look for blocked queries, which are ones that have <code>waiting</code>
+as true. Because of the MVCC architecture of PostgreSQL, these are not generally 
+quick-hit <code>UPDATEs</code> or <code>DELETEs</code>. Instead, they are most likely 
+locks held by long-running transactions or DDL queries.</p>
+<h3>Looking at locks</h3>
+<p>To directly see the locks that currently held, look at 
+<a href="http://www.postgresql.org/docs/9.1/static/view-pg-locks.html"><code>pg_locks</code></a>, 
+like so:
+</p><pre>
+kkreamer=# SELECT * FROM pg_locks;
+-[ RECORD 1 ]------+----------------
+locktype           | virtualxid
+database           | 
+relation           | 
+page               | 
+tuple              | 
+virtualxid         | 4/11
+transactionid      | 
+classid            | 
+objid              | 
+objsubid           | 
+virtualtransaction | 4/11
+pid                | 24270
+mode               | ExclusiveLock
+granted            | t
+-[ RECORD 2 ]------+----------------
+locktype           | relation
+database           | 17380
+relation           | 11000
+page               | 
+tuple              | 
+virtualxid         | 
+transactionid      | 
+classid            | 
+objid              | 
+objsubid           | 
+virtualtransaction | 4/11
+pid                | 24270
+mode               | AccessShareLock
+granted            | t
+-[ RECORD 3 ]------+----------------
+locktype           | virtualxid
+database           | 
+relation           | 
+page               | 
+tuple              | 
+virtualxid         | 3/117
+transactionid      | 
+classid            | 
+objid              | 
+objsubid           | 
+virtualtransaction | 3/117
+pid                | 24269
+mode               | ExclusiveLock
+granted            | t
+</pre>
+<p>You're generally going to want to look for some sort of exclusive lock on
+a shared resource. For example, doing an <code>ALTER TABLE</code> will acquire
+an <code>ACCESS EXCLUSIVE</code> lock on the table, and any queries accessing 
+that table will block until the DDL transaction finishes. The PostgreSQL 
+documentation includes 
+<a href="http://www.postgresql.org/docs/9.1/static/explicit-locking.html">a complete listing</a> 
+of the different locks that can be taken and in which circumstances.</p>
+<h2>Manage</h2>
+<p>Once you found your offending query, what to do about it? How do you 
+kill the query, so that other ones can run efficiently?</p>
+<p>Note that this should be an uncommon occurrence. If you find yourself doing this
+very often, look into optimizing the offending queries, especially if they are the
+same ones over and over; changing your application to do less expensive operations overall;
+or if necessary, scaling your database up or out.</p>
+<p>There are basically two different ways to kill a query: from your OS command line, or 
+from within a database connection. This is assuming a Unix-like OS; I don't know how PostgreSQL on
+Windows handles this. The first thing to recognize is that PostgreSQL uses a separate 
+process for each connection. The second thing to realize is that the process ID for a given 
+query is given in <code>pg_stat_activity</code> under the <code>procpid</code> column.
+So, you can kill the connection by killing the associated process
+from the command line, as <code>root</code>:
+</p><pre>
+~$ sudo kill 24269
+</pre>
+and the user sees the entire connection die:
+<pre>
+kkreamer=&gt; SELECT pg_sleep(10000);
+FATAL:  terminating connection due to administrator command
+FATAL:  terminating connection due to administrator command
+The connection to the server was lost. Attempting reset: Succeeded.
+</pre>
+
+<p>The somewhat nicer way is to use 
+<a href="http://www.postgresql.org/docs/9.2/static/functions-admin.html"><code>pg_cancel_backend()</code></a>
+as <code>postgres</code> or some other database superuser:
+</p><pre>
+kkreamer=# SELECT pg_cancel_backend(24269);
+-[ RECORD 1 ]-----+--
+pg_cancel_backend | t
+
+</pre>
+<p>This just cancels the current query, while leaving open the existing connection:
+</p><pre>
+kkreamer=&gt; SELECT pg_sleep(10000);
+ERROR:  canceling statement due to user request
+kkreamer=&gt;
+</pre>
+<p>Since it runs from within PostgreSQL, it saves you from having to ssh into the server and become root. 
+For that reason, it's also an attractive option for users that have elevated database access but 
+reduced server access. Note also that PostgreSQL provides a <code>pg_terminate_backend()</code> function that is similar
+in effect to killing the process from the command line, but gives the benefits of running from 
+within a database connection.</p>
+    </div>
+            
+    <div class="footer">
+      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
+    </div>    
+  </body>
+</html>

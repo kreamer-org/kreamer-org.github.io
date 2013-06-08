@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    <title>Display a useful message when a test fails | Kreamer.org</title>
+    
+    <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <div id="logo">
+        <a href="/" title="Home" rel="home">
+          <img src="/images/moon.png" alt="Home" id="logo-image" 
+               /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
+        </a>
+      </div>
+      <div class="breadcrumbs">
+<a href="/">Home</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/phpunit-cookbook/1.0/">PHPUnit Cookbook 1.0</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/phpunit-cookbook/1.0/assertions/display-useful-message-when-test-fails.html">Display a useful message when a test fails</a>
+</div>
+
+    </div>
+      
+    <div class="main-content">
+      <h1>Display a useful message when a test fails</h1>
+<h2>You want to:</h2>
+<p><b>Display a message to help you understand exactly what failed.</b></p>
+
+<p>By default, PHPUnit will tell you what failed, but not what that failure means. So, for example, you'll get 6 does not equal 7 (which you already knew), instead of PHPUnit telling you that your multiply function is not working.</p>
+
+<h2>Solution:</h2>
+<p><b>Pass an optional third argument to your assertions that contains a relevant message.</b></p>
+
+<div class="CodeRay"><div class="code"><pre><code class="language-php"><table class="CodeRay"><tr>
+<td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+<a href="#n5" name="n5">5</a>
+<a href="#n6" name="n6">6</a>
+<a href="#n7" name="n7">7</a>
+<a href="#n8" name="n8">8</a>
+<a href="#n9" name="n9">9</a>
+<strong><a href="#n10" name="n10">10</a></strong>
+<a href="#n11" name="n11">11</a>
+<a href="#n12" name="n12">12</a>
+<a href="#n13" name="n13">13</a>
+<a href="#n14" name="n14">14</a>
+<a href="#n15" name="n15">15</a>
+<a href="#n16" name="n16">16</a>
+<a href="#n17" name="n17">17</a>
+<a href="#n18" name="n18">18</a>
+<a href="#n19" name="n19">19</a>
+<strong><a href="#n20" name="n20">20</a></strong>
+<a href="#n21" name="n21">21</a>
+<a href="#n22" name="n22">22</a>
+<a href="#n23" name="n23">23</a>
+<a href="#n24" name="n24">24</a>
+<a href="#n25" name="n25">25</a>
+<a href="#n26" name="n26">26</a>
+<a href="#n27" name="n27">27</a>
+</pre></td>
+  <td class="code"><pre><span class="inline-delimiter">&lt;?php</span>
+<span class="predefined">require_once</span> <span class="string"><span class="delimiter">"</span><span class="content">PHPUnit/Framework.php</span><span class="delimiter">"</span></span>;
+ 
+<span class="keyword">class</span> <span class="class">SimpleMultiplier</span>
+{
+    <span class="comment">/*
+     * Simply multiply two numbers together
+     */</span>
+    <span class="keyword">public</span> <span class="keyword">function</span> <span class="function">multiply</span>(<span class="local-variable">$a</span>, <span class="local-variable">$b</span>)
+    {
+        <span class="keyword">return</span> (<span class="local-variable">$a</span> * <span class="local-variable">$b</span> + <span class="integer">1</span>); <span class="comment">// Notice the plus one</span>
+    }
+}
+ 
+<span class="keyword">class</span> <span class="class">TestSimpleMultiplier</span> <span class="keyword">extends</span> <span class="constant">PHPUnit_Framework_TestCase</span>
+{
+    <span class="keyword">public</span> <span class="keyword">function</span> <span class="function">test_multiply_simple</span>()
+    {
+        <span class="local-variable">$multiplier</span> = <span class="keyword">new</span> <span class="constant">SimpleMultiplier</span>();
+        <span class="local-variable">$result</span> = <span class="local-variable">$multiplier</span>-&gt;multiply(<span class="integer">2</span>, <span class="integer">3</span>);
+ 
+        <span class="local-variable">$this</span>-&gt;assertEquals(<span class="local-variable">$result</span>, <span class="integer">6</span>,
+                            <span class="string"><span class="delimiter">"</span><span class="content">Multiplying 2 and 3 did not return 6</span><span class="delimiter">"</span></span>);
+    }
+}
+ 
+<span class="inline-delimiter">?&gt;</span></pre></td>
+</tr></table></code></pre></div></div>
+
+<p>Since our multiply function has a bug (it always adds one), this test fails, but tells us why:</p>
+
+<pre>
+PHPUnit 3.4.13 by Sebastian Bergmann.
+
+F
+
+Time: 0 seconds, Memory: 5.75Mb
+
+There was 1 failure:
+
+1) TestSimpleMultiplier::test_multiply_simple
+Multiplying 2 and 3 did not return 6
+Failed asserting that <6> matches expected <7>.
+
+.../testMessage.php:23
+
+FAILURES!
+Tests: 1, Assertions: 1, Failures: 1.
+</7></6></pre>
+    </div>
+            
+    <div class="footer">
+      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
+    </div>    
+  </body>
+</html>

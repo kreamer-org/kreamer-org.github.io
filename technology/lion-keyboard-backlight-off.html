@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    <title>How to Turn the Keyboard Backlight Off in Lion | Kreamer.org</title>
+    
+    <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <div id="logo">
+        <a href="/" title="Home" rel="home">
+          <img src="/images/moon.png" alt="Home" id="logo-image" 
+               /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
+        </a>
+      </div>
+      <div class="breadcrumbs">
+<a href="/">Home</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/">Technology</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/lion-keyboard-backlight-off.html">How to Turn the Keyboard Backlight Off in Lion</a>
+</div>
+
+    </div>
+      
+    <div class="main-content">
+      <h1>How to Turn the Keyboard Backlight Off in Lion</h1><div class="blog-header"><p>Posted on April 14, 2012</p></div><p>OS X Lion has bug that turns on the keyboard backlight when doing Fast 
+User Switching, and then <em>keeps it on</em> after logging in with a user
+that has <a href="http://support.apple.com/kb/HT4882">disabled</a> the
+feature. Worse yet, the system doesn't seem to "know" that the backlight
+is still on. So, you've got to turn it "on" and then back off again to 
+actually turn it off, hitting the associated keyboard key twice.  Annoying.
+</p>
+<p>I found out from a co-worker how to get this to stop, and wanted to post
+here to remember and to help anyone else having the problem. In Terminal,
+type:
+</p><pre>
+sudo "/Applications/System Preferences.app/Contents/MacOS/System Preferences"
+</pre>
+This runs System Preferences as root, rather than your user. Obviously,
+you'll need sudo permissions to be able to do this; don't worry, you'll
+have the correct permissions if you are an admin on the machine.  Then,
+go to the same Keyboard preference pane, and disable <cite>"Automatically
+illuminate keyboard in low light"</cite>. Reboot your machine, and you should
+no longer get a backlit keyboard at the login prompt.
+    </div>
+            
+    <div class="footer">
+      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
+    </div>    
+  </body>
+</html>

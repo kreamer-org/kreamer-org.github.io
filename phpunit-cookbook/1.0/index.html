@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    <title>PHPUnit Cookbook 1.0 | Kreamer.org</title>
+    
+    <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <div id="logo">
+        <a href="/" title="Home" rel="home">
+          <img src="/images/moon.png" alt="Home" id="logo-image" 
+               /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
+        </a>
+      </div>
+      <div class="breadcrumbs">
+<a href="/">Home</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/phpunit-cookbook/1.0/">PHPUnit Cookbook 1.0</a>
+</div>
+
+    </div>
+      
+    <div class="main-content">
+      <h1>PHPUnit Cookbook 1.0</h1>
+
+<p>While there's pretty complete PHPUnit API documentation out there, and there's a PHPUnit manual, there's still not a lot of practical examples of using PHPUnit on the Internet, especially with its Mock interface. As a result, most people tend to stick to the tip of the iceberg in terms of the functionality that PHPUnit offers.</p>
+
+<p>This book is an attempt to reverse that, by gathering together useful examples in an O'Reilly Cookbook-like format.</p>
+
+<p>This book will include primarily code samples or even more generally, complete programs. Each should run directly as given. They have been tested using PHP version 5.3 and PHPUnit version 3.4.</p>
+
+<hr><h2>Assertions</h2>
+<p>The basics of a unit test is to run through a unit of code (a function, cohesive set of functions, or object), and then assert that certain conditions are met. The most common condition is that a given return value is what was expected.</p>
+
+<p>A PHPUnit TestCase has wide range of assertions built-in, and provides the building blocks to construct arbitrary assertions.</p>
+
+<ul class="toc-sections">
+<li><a href="/phpunit-cookbook/1.0/assertions/display-useful-message-when-test-fails">
+    Display a useful message when a test fails</a></li>
+<li><a href="/phpunit-cookbook/1.0/assertions/use-multiple-assertions-in-one-test">
+    Use multiple assertions in one test</a></li>
+</ul><hr><h2>Mocks</h2>
+<p>A unit test properly checks a unit (a function or cohesive set of functions) of code, and only that unit. A unit, though, is generally only useful working in concert with other functions and objects in order to to make a shippable product. PHPUnit comes with functionality, in the form of its Mock interface, that enables you to generate useful stand-ins for other functions and objects on which the tested code relies.</p>
+
+<p>Not only can the generated mocks effectively stub out non-unit functionality, they can be set up with expectations, which are assertions that the mocked out class is used as expected.</p>
+<ul class="toc-sections">
+<li><a href="/phpunit-cookbook/1.0/mocks/create-mock-class">
+    Create a mock class</a></li>
+<li><a href="/phpunit-cookbook/1.0/mocks/create-mock-for-class-that-has-constructor-arguments">
+    Create mock for class that has constructor arguments</a></li>
+<li><a href="/phpunit-cookbook/1.0/mocks/generate-many-similar-mock-objects">
+    Generate many similar mock objects</a></li>
+<li><a href="/phpunit-cookbook/1.0/mocks/create-mock-for-class-with-dangerous-constructor">
+    Create mock for class with dangerous constructor</a></li>
+<li><a href="/phpunit-cookbook/1.0/mocks/set-mock-expectations-for-multiple-calls-to-a-function">
+    Set mock expectations for multiple calls to a function</a></li>
+</ul>
+    </div>
+            
+    <div class="footer">
+      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
+    </div>    
+  </body>
+</html>

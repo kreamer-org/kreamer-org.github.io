@@ -1,0 +1,12 @@
+RewriteEngine On
+
+RewriteBase /
+
+RewriteRule ^recipe/(.*)$ http://www.etherhogz.org/recipes/$1 [L,R=301]
+RewriteRule ^recipe$ http://www.etherhogz.org/recipes [L,R=301]
+RewriteRule ^recipes/(.*)$ http://www.etherhogz.org/recipes/$1 [L,R=301]
+RewriteRule ^recipes$ http://www.etherhogz.org/recipes [L,R=301]
+
+RewriteRule ^politics/(.*)$ http://www.etherhogz.org/politics/$1 [L,R=301]
+RewriteRule ^politics$ http://www.etherhogz.org/politics [L,R=301]
+

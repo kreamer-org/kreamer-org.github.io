@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteBase /phpunit-cookbook/
+
+RewriteRule ^$ 1.0 [L,R=301]
+RewriteRule ^index 1.0 [L,R=301]
+
