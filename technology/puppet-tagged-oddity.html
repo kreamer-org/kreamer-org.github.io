@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    <title>Puppet's tagged() Function Oddity | Kreamer.org</title>
+    
+    <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+  </head>
+  <body>
+    <div class="header">
+      <div id="logo">
+        <a href="/" title="Home" rel="home">
+          <img src="/images/moon.png" alt="Home" id="logo-image" 
+               /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
+        </a>
+      </div>
+      <div class="breadcrumbs">
+<a href="/">Home</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/">Technology</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="/technology/puppet-tagged-oddity.html">Puppet's tagged() Function Oddity</a>
+</div>
+
+    </div>
+      
+    <div class="main-content">
+      <h1>Puppet's tagged() Function Oddity</h1><div class="blog-header"><p>Posted on August 15, 2013</p></div><p>This is something I ran into at work today. Puppet's tagged() function does not work as I expected
+in a particular circumstance.</p>
+<p>For example, let's assume <code>modules/foo/manifests/bar.pp</code> contains the code below.</p>
+<pre>
+class foo::bar {
+  file { '/tmp/foo':
+    content =&gt; 'bar',
+  }
+}
+</pre>
+<p>There's nothing particular special here... we've simply defined a new class with some
+standard puppetry inside. No inheritance or anything like that.
+</p><p>Let's also assume that another module contained the code below. </p>
+<pre>
+  if tagged('foo') {
+    // ... do something
+  }
+</pre>
+<p>If a host is tagged with <code>foo::bar</code> and this other module, the "do
+something" code would actually be run. <code>tagged('foo')</code> 
+returns true, in this case, even though the host is really tagged with <code>foo::bar</code>.</p>
+    </div>
+            
+    <div class="footer">
+      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
+    </div>    
+  </body>
+</html>
