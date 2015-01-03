@@ -1,10 +1,11 @@
+
 @font-face {
     font-family: Anonymous;
     src: url('/fonts/anonymous/AnonymousPro-Regular.ttf');
 }
 
 html {
-    -webkit-font-smoothing: antialiased; 
+    -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -63,10 +64,6 @@ code {
     font-size: 0.8em;
 }
 
-.right-sidebar {
-    padding: 1em;
-}
-
 .breadcrumbs {
     border-top: 1px solid #aaa;
     border-bottom: 1px solid #aaa;
@@ -99,18 +96,15 @@ code {
 .footer {
     border-top: 1px solid #aaa;
     font-size: 0.8em;
+    text-align: center;
 }
 
 ul {
-    list-style-type: none;    
+    list-style-type: none;
 }
 
 ul.toc-sections li {
     padding-bottom: 0.5em;
-}
-
-.footer {
-    text-align: center;
 }
 
 .blog-header {
@@ -172,10 +166,67 @@ p.blog-list {
     margin-top: 0.5em;
 }
 
+.main {
+    display: table;
+    min-width: 1024px;
+}
+
+.main-row {
+    display: table-row;
+}
+
 .main-content {
-    margin-left: 5em;
-    margin-right: 5em;
-    margin-bottom: 1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 1em;
+    display: table-cell;
+}
+
+.right-sidebar {
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 20%;
+    display: table-cell;
+}
+
+.right-sidebar-content ul {
+    padding: 0;
+    margin: 0;
+}
+
+.right-sidebar-content ul:first-child {
+    padding-top: 0;
+}
+
+.right-sidebar-content ul li {
+    padding-top: 0.5em;
+    font-size: 0.8em;
+}
+
+.sidebar-item {
+    padding-bottom: 1em;
+}
+
+.sidebar-logos {
+    padding-top: 0.5em;
+}
+
+.sidebar-logos img {
+    height: 32px;
+}
+
+.sidebar-title {
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.sidebar-link {
+    padding-bottom: 0.5em;
+}
+
+.sidebar-link a {
+    color: #333;
+    text-decoration: none;
 }
 
 .quote .quote-content {
@@ -185,3 +236,4 @@ p.blog-list {
 .quote .quote-attribution {
     padding-left: 2em;
 }
+

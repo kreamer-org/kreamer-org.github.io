@@ -1,10 +1,13 @@
-<!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+    <meta charset="utf-8" />
     <meta name="google-site-verification" content="mYl14XIV6DoN2K1OiMqEh26CqLJiIOchJUqUk8v4p5s" />
+    
     <title>Use multiple assertions as part of one test | Kreamer.org</title>
     
+
     <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
@@ -13,7 +16,7 @@
     <div class="header">
       <div id="logo">
         <a href="/" title="Home" rel="home">
-          <img src="/images/moon.png" alt="Home" id="logo-image" 
+          <img src="/images/moon.png" alt="Home" id="logo-image"
                /><span id="logo-inner">Kreamer<span id="logo-dot">.</span>org</span>
         </a>
       </div>
@@ -22,9 +25,10 @@
 </div>
 
     </div>
-      
-    <div class="main-content">
-      <h1>Use multiple assertions in one test</h1>        
+    <div class="main">
+      <div class="main-row">
+        <div class="main-content">
+          <h1>Use multiple assertions in one test</h1>        
 <h2>You want to:</h2>
 <p><b>Assert multiple conditions in one test</b></p>
 <p>It is a rare test indeed that tests one and only one thing.  Usually, you will have to check multiple values or multiple parts of
@@ -34,8 +38,8 @@ some object.  As a result, you want to assert that each of those match their exp
 
 <p>Multiple assertions are run in order.  Execution stops at the first failed test, and the test as a whole passes only if all assertions pass.</p>
 
-<pre><code class="language-php"><table class="CodeRay"><tr>
-<td class="line-numbers" title="double click to toggle" ondblclick="with (this.firstChild.style) { display = (display == '') ? 'none' : '' }"><pre><a href="#n1" name="n1">1</a>
+<div class="CodeRay"><div class="code"><pre><code class="language-php"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
 <a href="#n2" name="n2">2</a>
 <a href="#n3" name="n3">3</a>
 <a href="#n4" name="n4">4</a>
@@ -166,11 +170,53 @@ some object.  As a result, you want to assert that each of those match their exp
 }
  
 <span class="inline-delimiter">?&gt;</span></pre></td>
-</tr></table></code></pre>
+</tr></table></code></pre></div></div>
+
+
+        </div>
+        <div class="right-sidebar">
+          <div class="right-sidebar-content">
+            <div class="sidebar-item">
+              <div class="sidebar-title">Recent Posts:</div>
+              <ul>
+                  <li><a href="/technology/on-almost-but-not-quite">On Almost But Not Quite</a></li><li><a href="/technology/puppet-tagged-oddity">Puppet's tagged() Function Oddity</a></li><li><a href="/technology/language-package-managers-considered-harmful">Language Package Managers Considered Harmful</a></li><li><a href="/technology/postgresql-managing-processes">Managing Queries in PostgreSQL</a></li>
+              </ul>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-link sidebar-title">
+                <a href="/technology">Technology &rarr;</a>
+              </div>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-link sidebar-title">
+                <a href="/quotes">Quotes &rarr;</a>
+              </div>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-title">Elsewhere on the Internet</div>
+              <div class="sidebar-logos">
+                <a href="https://www.github.com/kkreamer">
+                  <img src="/images/octocat.jpg" alt="GitHub" />
+                </a>
+                <a href="https://www.linkedin.com/in/kevinkreamer">
+                  <img src="/images/InBug-60px-TM.png" alt="LinkedIn" />
+                </a>
+                <a href="https://twitter.com/kkreamer">
+                  <img src="/images/Twitter_logo_blue.png" alt="Twitter" />
+                </a>
+              </div>
+              <div class="sidebar-logos">
+                <a href="http://www.4clojure.com/user/kkreamer">
+                  <img src="/images/4clj-logo-small.png" alt="4Clojure" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-            
     <div class="footer">
-      <p>Copyright &copy; 2010-2013 Kevin Kreamer</p>
-    </div>    
+      <p>Copyright &copy; 2010-2015 Kevin Kreamer</p>
+    </div>
   </body>
 </html>
