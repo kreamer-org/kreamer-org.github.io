@@ -8,15 +8,8 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-a {
-    text-decoration: none;
-}
-
-p {
-    line-height: 1.5em;
-}
-
 body {
+    width: 95%;
     font-size: 100%;
     font-family: Oxygen, Helvetica, Arial, sans-serif;
     color: #333;
@@ -48,15 +41,17 @@ h4 {
     font-size: 0.8em;
 }
 
+a {
+    text-decoration: none;
+}
+
+p {
+    line-height: 1.5em;
+}
+
 hr {
     background: #aaa;
     color: #aaa;
-}
-
-pre {
-    padding: 1em;
-    font-family: Anonymous, Menlo, Courier, Courier New, monospace;
-    font-size: 0.95em;
 }
 
 code {
@@ -72,13 +67,18 @@ code {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
     padding-left: 0.5em;
+    padding-right: 0.5em;
     font-size: 0.7em;
+    width: 100%
 }
 
 .no-breadcrumbs {
     border-top: 1px solid #aaa;
     margin-top: 1em;
     margin-bottom: 1em;
+    width: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
 }
 
 .homepage-section {
@@ -125,13 +125,6 @@ ul.toc-sections li {
     background-color: #F3E5AB;
 }
 
-pre {
-    margin-left: 3em;
-    margin-right: 3em;
-    border: 1px #aaa dotted;
-    padding: 0.75em;
-}
-
 #logo {
     margin-top: 1em;
     font-size: 1.75em;
@@ -162,71 +155,22 @@ p.blog-list {
     margin: 0.25em 1em 0.25em 0 !important;
 }
 
+.blog-list {
+    padding-top: 0.5em;
+}
+
+.blog-list:first-of-type {
+    padding-top: 0;
+}
+
 .homepage-section h2 {
     margin-top: 0.5em;
-}
-
-.main {
-    display: table;
-    min-width: 1024px;
-}
-
-.main-row {
-    display: table-row;
 }
 
 .main-content {
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 1em;
-    display: table-cell;
-}
-
-.right-sidebar {
-    padding-left: 1em;
-    padding-right: 1em;
-    width: 20%;
-    display: table-cell;
-}
-
-.right-sidebar-content ul {
-    padding: 0;
-    margin: 0;
-}
-
-.right-sidebar-content ul:first-child {
-    padding-top: 0;
-}
-
-.right-sidebar-content ul li {
-    padding-top: 0.5em;
-    font-size: 0.8em;
-}
-
-.sidebar-item {
-    padding-bottom: 1em;
-}
-
-.sidebar-logos {
-    padding-top: 0.5em;
-}
-
-.sidebar-logos img {
-    height: 32px;
-}
-
-.sidebar-title {
-    font-variant: small-caps;
-    font-weight: bold;
-}
-
-.sidebar-link {
-    padding-bottom: 0.5em;
-}
-
-.sidebar-link a {
-    color: #333;
-    text-decoration: none;
 }
 
 .quote .quote-content {
@@ -235,5 +179,147 @@ p.blog-list {
 
 .quote .quote-attribution {
     padding-left: 2em;
+}
+
+@media screen and (min-width: 800px),
+@media handheld and (min-width: 800px) {
+
+    pre {
+        padding: 1em;
+        font-family: Anonymous, Menlo, Courier, Courier New, monospace;
+        font-size: 0.95em;
+        margin-left: 3em;
+        margin-right: 3em;
+        border: 1px #aaa dotted;
+        overflow: auto;
+    }
+
+    .bottom-nav {
+        display: none;
+    }
+
+    .main {
+        display: table;
+    }
+
+    .main-row {
+        display: table-row;
+    }
+
+    .main-content {
+        display: table-cell;
+    }
+
+    .right-sidebar {
+        padding-left: 1em;
+        padding-right: 1em;
+        width: 20%;
+        display: table-cell;
+    }
+
+    .right-sidebar-content ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .right-sidebar-content ul:first-child {
+        padding-top: 0;
+    }
+
+    .right-sidebar-content ul li {
+        padding-top: 0.5em;
+        font-size: 0.8em;
+    }
+
+    .sidebar-item {
+        padding-bottom: 1em;
+    }
+
+    .sidebar-logos {
+        padding-top: 0.5em;
+    }
+
+    .sidebar-logos img {
+        height: 32px;
+    }
+
+    .sidebar-title {
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+
+    .sidebar-link {
+        padding-bottom: 0.5em;
+    }
+
+    .sidebar-link a {
+        color: #333;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 0px) and (max-width: 800px),
+@media handheld and (min-width: 0px) and (max-width: 800px) {
+    pre {
+        padding: 1em;
+        font-family: Anonymous, Menlo, Courier, Courier New, monospace;
+        font-size: 0.95em;
+        border: 1px #aaa dotted;
+        overflow: auto;
+    }
+
+    .right-sidebar {
+        display: none;
+    }
+
+    .bottom-nav {
+        border-top: 1px solid #aaa;
+        padding-top: 1em;
+    }
+
+    .bottom-nav-content {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .bottom-nav-content ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    .bottom-nav-content ul:first-child {
+        padding-top: 0;
+    }
+
+    .bottom-nav-content ul li {
+        padding-top: 0.5em;
+        font-size: 0.8em;
+    }
+
+    .bottom-nav-item {
+        padding-bottom: 1em;
+    }
+
+    .bottom-nav-logos {
+        padding-top: 0.5em;
+    }
+
+    .bottom-nav-logos img {
+        height: 32px;
+    }
+
+    .bottom-nav-title {
+        font-variant: small-caps;
+        font-weight: bold;
+    }
+
+    .bottom-nav-link {
+        padding-bottom: 0.5em;
+    }
+
+    .bottom-nav-link a {
+        color: #333;
+        text-decoration: none;
+    }
 }
 
