@@ -11,7 +11,7 @@ html {
 body {
     width: 95%;
     font-size: 100%;
-    font-family: Oxygen, Helvetica, Arial, sans-serif;
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
     color: #555;
     background-color: #fff;
 }
@@ -20,7 +20,6 @@ h1, h2, h3, h4 {
     color: #555;
     text-transform: uppercase;
     text-decoration: none;
-    letter-spacing: 0.1em;
 }
 
 h1 {
@@ -107,13 +106,11 @@ ul.toc-sections li {
 }
 
 .blog-header {
-    margin-bottom: 1em;
+    font-size: 0.75em;
 }
 
 .blog-header p {
-    line-height: 1em;
-    font-size: 0.9em;
-    padding-bottom: 0.5em;
+    margin: 0;
 }
 
 .quote p {

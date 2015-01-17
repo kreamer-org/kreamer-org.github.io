@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="/css/kreamerorg.css" type="text/css" media="screen, projection" />
     <link rel="stylesheet" href="/css/coderay.css" type="text/css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oxygen" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600" type="text/css" />
   </head>
   <body>
     <div class="header">
@@ -27,44 +27,77 @@
     <div class="main">
       <div class="main-row">
         <div class="main-content">
-          <h1>On Almost But Not Quite</h1><div class="blog-header"><p>Posted on January 3, 2015</p></div><p><i>Use the right tool for the job.</i></p>
-<p>It's such a truism that it hardly warrants discussion. Of course, the best thing
-    to do is to use the right tool for the job, because if you don't, you end up wasting
-    time. It also seems like an obvious corollary that the more unsuitable the tool,
-    the more time is wasted. However, this isn't quite true; you end up wasting the
-    most time when dealing with a tool that is just barely not suitable.</p>
-<p>Thought experiment time: let's say you have a tree which, for whatever reason, must not be allowed to stand.
-    This is a sizeable tree, over twenty feet tall and a couple feet in diameter.
-    You glare up at this future dining room table, raise a fist, yell <i>"Buddy, you are coming down!"</i>,
-    and ponder the right tool for this job. If you have any experience at all cutting down trees,
-    the instant answer is a chainsaw.</p>
-<p>Let's say, though, that you don't have any experience felling trees, and you don't have a
-    chainsaw around. You might not have even heard of a chainsaw, maybe. Instead, you look
-    into your Schrödinger's toolbox for the tool to down this overgrown shrub, and in two
-    parallel universes you pull out an axe and a <a href="https://en.wikipedia.org/wiki/Knights_who_say_Ni">herring</a>,
-    respectively. In which universe do you to waste the most time?</p>
-<p>I posit that the you holding the axe is going to still be whacking away at
-    <a href="https://en.wikipedia.org/wiki/Trees_%28poem%29">Kilmer's poem</a> when the other
-    you starts to rip into grilled herring flesh after roasting it on the fire from the previously vertical woodpile.
-    If you pull an axe out of your toolbox, and that's the only tool you know, you're likely roll up your sleeve
-    and get to work chopping. On the other hand, the fish is so manifestly unsuitable for the job at hand,
-    that there's approximately zero chance that it touches bark. Instead, you are likely to go search for
-    what is really the right tool for the job, and are likely to end up using a chainsaw.</p>
-<p>At this point, you are likely thinking: <i>"What does this have to do with me? I'm not chopping
-    down a tree anytime soon, and even if I were, I've heard of a chainsaw."</i> The deal, though,
-    is that we as individual developers and we as an industry keep attacking our problems with
-    the axes in our toolboxes rather than searching out chainsaws.</p>
-<p>The modern, portable, gas-powered chainsaw is <a href="https://en.wikipedia.org/wiki/Chainsaw#History">less than
-    100 years old</a>. For thousands of years before that, an axe was the right tool for the job. Likewise,
-    before cfengine, puppet, and the like, each server was a special snowflake and that's just how it was. Now,
-    the best tool for the job of managing hundreds of servers is to treat them like cattle
-    and use a configuration management system. Yes, it takes more set up time; it requires better discipline;
-    and there are more moving parts that can break. But, it's the same with the chainsaw: you have to make sure
-    it has gas; you'd better have more training and discipline, or I see a trip to the ER in your future;
-    and a chainsaw can break down in all kinds of interesting ways, where an axe can... break a handle, I guess.</p>
-<p>Lesson #1: even if you have the sharpest axe in the world, handed down across generations, still keep a lookout
-    for the chainsaw that makes it obsolete. Lesson #2: when you find yourself fighting your tools, take a step
-    back and see if you are dealing with an axe rather than a chainsaw.</p>
+          <h1>Sears and Misaligned Incentives</h1><div class="blog-header">
+<p>Posted on January 17, 2015</p>
+<p>Category: Business</p>
+</div><p>
+    Sears continues its <a href="http://chicago.suntimes.com/news/7/71/231098/sears-e-commerce-chief-resigns/">circle</a>
+    <a href="http://seekingalpha.com/article/2707015-sears-closing-more-stores-next-year-8000-layoffs-since-november">around</a>
+    the drain. After they go bankrupt, all the reasons why will likely end up as business cases in MBA curricula,
+    but given my experiences shopping there, I believe one of the causes is misaligned incentives between the store
+    and their sales associates.
+</p>
+<p>
+    Disclaimer: I know full well that the plural of anecdote is not data.
+</p>
+<p>
+    When my wife and I bought our house, it came with a Amana refrigerator with a water dispenser in the front. Fridge
+    water dispensers use filters, which need to be replaced periodically, and for this particular fridge, the water
+    filter in question was available at Sears in the local mall. So, when it came time to replace it, off to the mall
+    I went.
+</p>
+<p>
+    I found myself in the appliance section at Sears, and flagged down
+    a sales associate to ask where the filters were. Instead of simply pointing, he walked me over to the section,
+    and waited as I made my selection. As soon as I started to walk away, <em>"Are you ready to check out?"</em>
+    Since I also needed a garden hose, I said no and headed over to the hardware section. The guy looked
+    crestfallen as I left.
+</p>
+<p>
+    Once in the hardware section, once again there was the hovering sales associate and the <em>"Are you
+    ready to check out?"</em> as soon as I made a selection. This time I said yes, and it dawned on me what
+    was going on while I was checking out. I confirmed my suspicions by asking the sales associate.
+</p>
+<p>
+    They are paid on commission.
+</p>
+<p>
+    There are several implications of this policy. The most immediate implication was that I was the unwitting
+    asshole costing the appliance guy his larger commission on the more expensive water filter because I
+    happened to decide to buy the less expensive garden hose afterwards.
+</p>
+<p>
+    It also means that it in the best interest of the sales associate, pay-wise, to get you to check out with
+    them, prompting the <em>"Are you ready to check out?"</em> as early as possible. Because of the commission
+    incentive, the sales process has aligned itself around a customer coming in for one item, or a few closely
+    related items, from one department. Sears is missing out on sales that in other stores happens because
+    the customer comes in for item A and notices they would like to buy some other unrelated item B as well.
+</p>
+<p>
+    Since customers generally leave once they've checked out, the store is always dead. I've gone
+    shopping at the mall during December, when you can't even find a parking spot, and I might well
+    have been the only customer in Sears (and that was only because I was leaving the mall to go to my car).
+    This probably also accounts for the behavior of the sales associates I've seen: either one notices you
+    and follows you about until you either buy something or get creeped out and leave; or you can't find
+    one to save your life because they are busy following around other customers,
+    and anyway, the store management likely cut everyone's hours because there are so few customers.
+</p>
+<p>
+    Psychologically, there are a few results of the "Hurry up and buy something" mentality.
+    Since the sales push is to get the customer out of the door as quickly as possible, customers don't
+    feel welcome shopping at Sears, and avoid the place. As an example, when it came time to replace the
+    fridge, I purposely bought one that had a filter from someplace other than Sears.
+</p>
+<p>
+    Worse yet, my absence from shopping at Sears doesn't just cost them my purchases; it costs them
+    purchases from other customers, as well. People are fundamentally social, and so a lack of other customers
+    at a store sends a strong signal of the (lack of) desirability of that store. It
+    sends a strong signal that the store is not cool. It might even make people question their safety
+    in that store.
+</p>
+<p>
+    In the end, people don't shop where other people don't shop.
+</p>
 
 
         </div>
@@ -73,21 +106,21 @@
             <div class="sidebar-item">
               <div class="sidebar-title">Recent Posts:</div>
               <ul>
-                  <li><a href="/technology/on-almost-but-not-quite">On Almost But Not Quite</a></li><li><a href="/technology/puppet-tagged-oddity">Puppet's tagged() Function Oddity</a></li><li><a href="/technology/language-package-managers-considered-harmful">Language Package Managers Considered Harmful</a></li><li><a href="/technology/postgresql-managing-processes">Managing Queries in PostgreSQL</a></li>
+                  <li><a href="/business/sears-and-misaligned-incentives">Sears and Misaligned Incentives</a></li><li><a href="/technology/on-almost-but-not-quite">On Almost But Not Quite</a></li><li><a href="/technology/puppet-tagged-oddity">Puppet's tagged() Function Oddity</a></li><li><a href="/technology/language-package-managers-considered-harmful">Language Package Managers Considered Harmful</a></li><li><a href="/technology/postgresql-managing-processes">Managing Queries in PostgreSQL</a></li>
               </ul>
             </div>
             <div class="sidebar-item">
               <div class="sidebar-link sidebar-title">
                 <a href="/technology">Technology &rarr;</a>
               </div>
-            </div>
-            <div class="sidebar-item">
+              <div class="sidebar-link sidebar-title">
+                <a href="/business">Business &rarr;</a>
+              </div>
               <div class="sidebar-link sidebar-title">
                 <a href="/quotes">Quotes &rarr;</a>
               </div>
             </div>
             <div class="sidebar-item">
-              <div class="sidebar-title">Elsewhere on the Internet</div>
               <div class="sidebar-logos">
                 <a href="https://www.github.com/kkreamer">
                   <img src="/images/octocat.jpg" alt="GitHub" />
@@ -112,7 +145,7 @@
         <div class="bottom-nav-item">
           <div class="bottom-nav-title">Recent Posts:</div>
           <ul>
-            <li><a href="/technology/on-almost-but-not-quite">On Almost But Not Quite</a></li><li><a href="/technology/puppet-tagged-oddity">Puppet's tagged() Function Oddity</a></li><li><a href="/technology/language-package-managers-considered-harmful">Language Package Managers Considered Harmful</a></li><li><a href="/technology/postgresql-managing-processes">Managing Queries in PostgreSQL</a></li>
+            <li><a href="/business/sears-and-misaligned-incentives">Sears and Misaligned Incentives</a></li><li><a href="/technology/on-almost-but-not-quite">On Almost But Not Quite</a></li><li><a href="/technology/puppet-tagged-oddity">Puppet's tagged() Function Oddity</a></li><li><a href="/technology/language-package-managers-considered-harmful">Language Package Managers Considered Harmful</a></li><li><a href="/technology/postgresql-managing-processes">Managing Queries in PostgreSQL</a></li>
           </ul>
         </div>
         <div class="bottom-nav-item">
@@ -126,7 +159,6 @@
           </div>
         </div>
         <div class="bottom-nav-item">
-          <div class="bottom-nav-title">Elsewhere on the Internet</div>
           <div class="bottom-nav-logos">
             <a href="https://www.github.com/kkreamer">
               <img src="/images/octocat.jpg" alt="GitHub" />
