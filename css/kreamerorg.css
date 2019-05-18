@@ -275,3 +275,15 @@ pre {
     }
 }
 
+label {
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: 15em;
+    text-align: right;
+}
+
+input {
+    display: inline-block;
+    float: left;
+}
