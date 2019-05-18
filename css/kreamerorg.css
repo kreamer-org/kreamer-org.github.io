@@ -279,8 +279,8 @@ label {
     display: inline-block;
     float: left;
     clear: left;
-    width: 15em;
-    text-align: right;
+    width: 8em;
+    text-align: left;
 }
 
 input {
